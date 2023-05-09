@@ -2,34 +2,28 @@ import sbt._
 
 object Dependencies {
 
-  val http4sV = "0.22.6"
-  val circeV = "0.14.3"
-  val logbackClassicV = "1.2.3"
-  val munitCatsEffectV = "0.12.0"
-  val kindProjectorV = "0.13.2"
-  val betterMonadicForV = "0.3.1"
-  val circeConfigV = "0.10.0"
-  val refinedV = "0.10.3"
-  val circeExtrasV = "0.14.3"
-  val scalaTestV = "3.2.15"
-  val scalaTestPlusV = "3.2.15.0"
-
   lazy val all = Seq(
-    "org.http4s" %% "http4s-dsl" % http4sV,
-    "org.http4s" %% "http4s-ember-server" % http4sV,
-    "org.http4s" %% "http4s-ember-client" % http4sV,
-    "org.http4s" %% "http4s-circe" % http4sV,
-    "io.circe" %% "circe-core" % circeV,
-    "io.circe" %% "circe-generic" % circeV,
-    "io.circe" %% "circe-parser" % circeV,
-    "io.circe" %% "circe-refined" % circeV,
-    "io.circe" %% "circe-generic-extras" % circeExtrasV,
-    "io.circe" %% "circe-config" % circeConfigV,
-    "eu.timepit" %% "refined" % refinedV,
-    "ch.qos.logback" % "logback-classic" % logbackClassicV,
-    "org.typelevel" %% "munit-cats-effect-2" % munitCatsEffectV % Test,
-    "org.scalactic" %% "scalactic" % scalaTestV,
-    "org.scalatest" %% "scalatest" % scalaTestV % Test,
-    "org.scalatestplus" %% "mockito-4-6" % scalaTestPlusV % Test
+    "org.typelevel" %% "cats-effect" % "3.4.8",
+    "org.http4s" %% "http4s-dsl" % "0.23.18",
+    "org.http4s" %% "http4s-ember-server" % "0.23.18",
+    "org.http4s" %% "http4s-ember-client" % "0.23.18",
+    "org.http4s" %% "http4s-circe" % "0.23.18",
+    "io.circe" %% "circe-core" % "0.14.5",
+    "io.circe" %% "circe-generic" % "0.14.5",
+    "io.circe" %% "circe-parser" % "0.14.5",
+    "io.circe" %% "circe-refined" % "0.14.5",
+    "io.circe" %% "circe-generic-extras" % "0.14.3",
+    "io.circe" %% "circe-config" % "0.10.0",
+    "eu.timepit" %% "refined" % "0.10.2",
+    "ch.qos.logback" % "logback-classic" % "1.4.6",
+    "org.typelevel" %% "munit-cats-effect-2" % "1.0.7" % Test,
+    "org.scalactic" %% "scalactic" % "3.2.15",
+    "org.scalatest" %% "scalatest" % "3.2.15" % Test,
+    "org.scalatestplus" %% "mockito-4-6" % "3.2.15.0" % Test,
+    "dev.profunktor" %% "fs2-rabbit" % "5.0.0",
+    "dev.profunktor" %% "fs2-rabbit-circe" % "5.0.0",
+    "com.beachape" %% "enumeratum" % "1.7.2",
+    "com.beachape" %% "enumeratum-circe" % "1.7.2",
+    "io.scalaland" %% "chimney" % "0.7.4"
   )
 }

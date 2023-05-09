@@ -13,12 +13,10 @@ import org.scalatest.matchers.should.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 
-import scala.concurrent.ExecutionContext.global
-
 class HealthCheckServiceTest extends AnyFlatSpec with Matchers with MockitoSugar with ScalaFutures {
 
   private implicit def unsafeLogger = Slf4jLogger.getLogger[IO]
-  private implicit val contextShift = IO.contextShift(global)
+  import cats.effect.unsafe.implicits.global
 
   val healthy = new HealthChecker[IO]() {
     override val name: String = "healthy"

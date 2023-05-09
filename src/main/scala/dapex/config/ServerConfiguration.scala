@@ -4,7 +4,8 @@ import io.circe.Decoder
 import io.circe.generic.semiauto.deriveDecoder
 
 case class ServerConfiguration(
-    http: HttpConfiguration
+    http: HttpConfiguration,
+    rabbitMQ: RabbitMQConfig
 )
 
 object ServerConfiguration {

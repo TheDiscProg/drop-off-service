@@ -1,4 +1,4 @@
-ThisBuild / organization := "dapex"
+ThisBuild / organization := "Event Driven Architecture with DAPEX"
 
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
@@ -18,7 +18,8 @@ lazy val base = (project in file("base"))
     scalacOptions ++= Scalac.options,
     coverageExcludedPackages := Seq(
       "<empty>",
-      ".*.entities.*"
+      ".*entities._",
+      ".*Algebra.*",
     ).mkString(";")
   )
 
@@ -50,6 +51,7 @@ lazy val root = (project in file("."))
   )
   .settings(
     commonSettings,
+    name := "drop-off-service",
     Compile / doc / sources := Seq.empty,
     scalacOptions ++= Scalac.options,
     Compile / mainClass := Some("dapex.MainApp"),
@@ -59,14 +61,17 @@ lazy val root = (project in file("."))
     coverageExcludedFiles := Seq(
       "<empty>",
       ".*MainApp.*",
-      ".*AppServer.*"
+      ".*AppServer.*",
+      ".*.config.*",
+      ".*rabbitmq.*"
     ).mkString(";"),
     coverageFailOnMinimum := true,
-    coverageMinimumStmtTotal := 92,
+    coverageMinimumStmtTotal := 97,
     coverageMinimumBranchTotal := 100
   )
   .aggregate(base, guardrail)
   .dependsOn(base % "test->test; compile->compile")
   .dependsOn(guardrail % "test->test; compile->compile")
-// Put here as repository tests hang
-parallelExecution := false
+
+addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
+addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
