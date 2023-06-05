@@ -1,12 +1,12 @@
 package dapex.dropoff.fixture
 
-import dapex.entities.DapexMessageFixture
-import dapex.entities.Method.{SELECT, UPDATE}
+import dapex.messaging.{DapexMessage, DapexMessageFixture}
+import dapex.messaging.Method.{SELECT, UPDATE}
 
 trait DropOffFixture extends DapexMessageFixture {
 
-  val selectRequestMessage = getMessage(SELECT)
+  val selectRequestMessage: DapexMessage = this.getMessage(SELECT)
 
-  val updateRequestMessage = getMessage(UPDATE)
+  val updateRequestMessage: DapexMessage = this.getMessage(UPDATE)
 
 }

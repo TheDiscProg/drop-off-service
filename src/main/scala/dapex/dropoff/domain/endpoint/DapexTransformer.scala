@@ -1,7 +1,7 @@
 package dapex.dropoff.domain.endpoint
 
-import dapex.entities.DapexMessage
 import dapex.guardrail.definitions.DapexMessageRequest
+import dapex.messaging.DapexMessage
 import io.scalaland.chimney.dsl._
 
 import scala.util.Try

@@ -22,6 +22,7 @@ lazy val base = (project in file("base"))
       ".*Algebra.*",
     ).mkString(";")
   )
+  .dependsOn(Dependencies.dapexMessagingRepo)
 
 lazy val guardrail = (project in file("guardrail"))
   .settings(
@@ -70,6 +71,7 @@ lazy val root = (project in file("."))
     coverageMinimumBranchTotal := 100
   )
   .aggregate(base, guardrail)
+  .dependsOn(Dependencies.dapexMessagingRepo % "test->test; compile->compile")
   .dependsOn(base % "test->test; compile->compile")
   .dependsOn(guardrail % "test->test; compile->compile")
 

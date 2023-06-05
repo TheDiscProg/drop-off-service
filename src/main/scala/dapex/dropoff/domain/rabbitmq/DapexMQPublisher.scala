@@ -5,7 +5,7 @@ import cats.data.Kleisli
 import cats.effect._
 import cats.implicits._
 import dapex.dropoff.domain.rabbitmq.RabbitQueue.DAPEX_MESSAGE_QUEUE
-import dapex.entities.DapexMessage
+import dapex.messaging.DapexMessage
 import dev.profunktor.fs2rabbit.effects.MessageEncoder
 import dev.profunktor.fs2rabbit.interpreter.RabbitClient
 import dev.profunktor.fs2rabbit.json.Fs2JsonEncoder

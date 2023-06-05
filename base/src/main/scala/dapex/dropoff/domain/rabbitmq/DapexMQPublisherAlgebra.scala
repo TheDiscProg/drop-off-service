@@ -1,6 +1,6 @@
 package dapex.dropoff.domain.rabbitmq
 
-import dapex.entities.DapexMessage
+import dapex.messaging.DapexMessage
 
 trait DapexMQPublisherAlgebra[F[_]] {
 

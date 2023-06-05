@@ -3,7 +3,7 @@ package dapex.dropoff.domain.orchestrator
 import cats.effect.IO
 import dapex.dropoff.domain.rabbitmq.DapexMQPublisherAlgebra
 import dapex.dropoff.fixture.DropOffFixture
-import dapex.entities.DapexMessage
+import dapex.messaging.DapexMessage
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

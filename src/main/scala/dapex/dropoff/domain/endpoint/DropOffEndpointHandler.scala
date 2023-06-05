@@ -4,7 +4,6 @@ import cats.effect.MonadCancel
 import cats.implicits._
 import dapex.dropoff.domain.ServiceResponse
 import dapex.dropoff.domain.orchestrator.DropOffOrchestatorAlgebra
-import dapex.entities.DapexMessage
 import dapex.guardrail.definitions.DapexMessageRequest
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
@@ -13,6 +12,7 @@ import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
   ServiceUnavailable
 }
 import dapex.guardrail.dropoff.{DropoffHandler, DropoffResource}
+import dapex.messaging.DapexMessage
 import org.typelevel.log4cats.Logger
 
 class DropOffEndpointHandler[F[_]: Logger: MonadCancel[*[_], Throwable]](

@@ -4,13 +4,13 @@ import cats.effect.IO
 import cats.implicits.catsSyntaxApplicativeId
 import dapex.dropoff.domain.orchestrator.DropOffOrchestatorAlgebra
 import dapex.dropoff.fixture.DropOffFixture
-import dapex.entities.DapexMessage
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
   BadRequest,
   NoContent,
   ServiceUnavailable
 }
+import dapex.messaging.DapexMessage
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers

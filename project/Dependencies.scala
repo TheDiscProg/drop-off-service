@@ -2,6 +2,9 @@ import sbt._
 
 object Dependencies {
 
+  lazy val dapexMessagingVersion = "0.1.1"
+  lazy val dapexMessagingRepo = RootProject(uri("https://github.com/TheDiscProg/dapex-messaging.git#%s".format(dapexMessagingVersion)))
+
   lazy val all = Seq(
     "org.typelevel" %% "cats-effect" % "3.4.8",
     "org.http4s" %% "http4s-dsl" % "0.23.18",

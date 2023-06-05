@@ -1,6 +1,6 @@
 package dapex.dropoff.domain.orchestrator
 
-import dapex.entities.DapexMessage
+import dapex.messaging.DapexMessage
 
 trait DropOffOrchestatorAlgebra[F[_]] {
 
