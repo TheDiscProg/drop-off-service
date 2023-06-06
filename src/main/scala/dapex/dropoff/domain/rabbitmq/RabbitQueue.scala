@@ -19,9 +19,9 @@ case object RabbitQueue extends Enum[RabbitQueue] {
 
   case object DAPEX_MESSAGE_QUEUE extends RabbitQueue {
     override val name: QueueName = QueueName("")
-    override val routingKey: RoutingKey = RoutingKey("")
-    override val exchange: ExchangeName = ExchangeName("")
-    override val dlx: Option[String] = Some("dlg.")
+    override val routingKey: RoutingKey = RoutingKey("NOT_USED")
+    override val exchange: ExchangeName = ExchangeName("shareprice")
+    override val dlx: Option[String] = Some("dlg.shareprice")
     override val exchangeType: ExchangeType = ExchangeType.Direct
     override val messageTTL: Option[Long] = None
     override val consumers: Boolean = false

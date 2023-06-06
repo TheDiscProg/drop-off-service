@@ -9,7 +9,7 @@ import dapex.messaging.DapexMessage
 import dev.profunktor.fs2rabbit.effects.MessageEncoder
 import dev.profunktor.fs2rabbit.interpreter.RabbitClient
 import dev.profunktor.fs2rabbit.json.Fs2JsonEncoder
-import dev.profunktor.fs2rabbit.model.AmqpMessage
+import dev.profunktor.fs2rabbit.model.{AmqpMessage, RoutingKey}
 import io.circe.Encoder
 import org.typelevel.log4cats.Logger
 
@@ -25,7 +25,7 @@ class DapexMQPublisher[F[_]: Sync: Logger](rabbitClient: RabbitClient[F])
           rabbitClient
             .createPublisher(
               DAPEX_MESSAGE_QUEUE.exchange,
-              DAPEX_MESSAGE_QUEUE.routingKey
+              RoutingKey(message.endpoint.resource)
             )(channel, encoder[F, DapexMessage])
             .flatMap { f =>
               f(message)
