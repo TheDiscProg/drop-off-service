@@ -18,7 +18,7 @@ sealed trait RabbitQueue extends EnumEntry {
 case object RabbitQueue extends Enum[RabbitQueue] {
 
   case object DAPEX_MESSAGE_QUEUE extends RabbitQueue {
-    override val name: QueueName = QueueName("")
+    override val name: QueueName = QueueName("NOT-USED")
     override val routingKey: RoutingKey = RoutingKey("NOT_USED")
     override val exchange: ExchangeName = ExchangeName("shareprice")
     override val dlx: Option[String] = Some("dlg.shareprice")
