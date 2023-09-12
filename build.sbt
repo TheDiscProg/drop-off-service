@@ -6,6 +6,8 @@ lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
   libraryDependencies ++= Dependencies.all,
   resolvers += Resolver.githubPackages("TheDiscProg"),
+  githubOwner := "TheDiscProg",
+  githubRepository := "dapex-rabbitmq",
   addCompilerPlugin(
     ("org.typelevel" %% "kind-projector" % "0.13.2").cross(CrossVersion.full)
   ),
