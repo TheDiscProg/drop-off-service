@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Dependencies.all,
   resolvers += Resolver.githubPackages("TheDiscProg"),
   githubOwner := "TheDiscProg",
-  githubRepository := "dapex-rabbitmq",
+  githubRepository := "drop-off-service",
   addCompilerPlugin(
     ("org.typelevel" %% "kind-projector" % "0.13.2").cross(CrossVersion.full)
   ),
