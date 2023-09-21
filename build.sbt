@@ -1,6 +1,6 @@
 ThisBuild / organization := "Event Driven Architecture with DAPEX"
 
-ThisBuild / version := "0.1.0-SNAPSHOT"
+ThisBuild / version := "0.1.0"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
