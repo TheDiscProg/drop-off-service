@@ -76,5 +76,7 @@ lazy val root = (project in file("."))
   .dependsOn(base % "test->test; compile->compile")
   .dependsOn(guardrail % "test->test; compile->compile")
 
+githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
+
 addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
