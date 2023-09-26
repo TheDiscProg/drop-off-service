@@ -1,6 +1,6 @@
 ThisBuild / organization := "DAPEX"
 
-ThisBuild / version := "0.1.1"
+ThisBuild / version := "1.0.1"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -79,7 +79,6 @@ lazy val root = (project in file("."))
     Docker / packageName := "drop-off-service",
     Docker / dockerUsername := Some("ramindur"),
     Docker / defaultLinuxInstallLocation := "/opt/drop-off-service",
-    dockerRepository := Some("ramindur"),
     dockerBaseImage := "eclipse-temurin:17-jdk-jammy",
     dockerExposedPorts ++= Seq(8002),
     dockerExposedVolumes := Seq("/opt/docker/.logs", "/opt/docker/.keys")
