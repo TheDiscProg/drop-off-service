@@ -3,7 +3,7 @@ package dapex.dropoff.domain.endpoint
 import cats.effect.IO
 import cats.implicits.catsSyntaxApplicativeId
 import dapex.dropoff.domain.orchestrator.DropOffOrchestatorAlgebra
-import dapex.dropoff.fixture.DropOffFixture
+import dapex.dropoff.fixture.{DefaultFutureSetting, DropOffFixture}
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse
 import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
   BadRequest,
@@ -11,7 +11,6 @@ import dapex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
   ServiceUnavailable
 }
 import dapex.messaging.DapexMessage
-import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.typelevel.log4cats.SelfAwareStructuredLogger
@@ -20,7 +19,7 @@ import org.typelevel.log4cats.slf4j.Slf4jLogger
 class DropOffEndpointHandlerTest
     extends AnyFlatSpec
     with Matchers
-    with ScalaFutures
+    with DefaultFutureSetting
     with DropOffFixture {
   private implicit def unsafeLogger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
 

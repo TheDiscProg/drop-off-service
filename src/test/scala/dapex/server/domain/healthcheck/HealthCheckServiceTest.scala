@@ -2,22 +2,24 @@ package dapex.server.domain.healthcheck
 
 import cats.data.NonEmptyList
 import cats.effect.IO
+import dapex.dropoff.fixture.DefaultFutureSetting
 import dapex.server.domain.healthcheck.entities.{
   HealthCheckStatus,
   HealthCheckerResponse,
   HealthStatus
 }
-import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.time.{Millis, Seconds, Span}
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 
-class HealthCheckServiceTest extends AnyFlatSpec with Matchers with MockitoSugar with ScalaFutures {
+class HealthCheckServiceTest
+    extends AnyFlatSpec
+    with Matchers
+    with MockitoSugar
+    with DefaultFutureSetting {
 
-  implicit val defaultPatience =
-    PatienceConfig(timeout = Span(2, Seconds), interval = Span(100, Millis))
   private implicit def unsafeLogger = Slf4jLogger.getLogger[IO]
   import cats.effect.unsafe.implicits.global
 
