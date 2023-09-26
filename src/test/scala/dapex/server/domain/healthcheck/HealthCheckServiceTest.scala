@@ -3,14 +3,9 @@ package dapex.server.domain.healthcheck
 import cats.data.NonEmptyList
 import cats.effect.IO
 import dapex.dropoff.fixture.DefaultFutureSetting
-import dapex.server.domain.healthcheck.entities.{
-  HealthCheckStatus,
-  HealthCheckerResponse,
-  HealthStatus
-}
+import dapex.server.domain.healthcheck.entities.{HealthCheckStatus, HealthCheckerResponse, HealthStatus}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.time.{Millis, Seconds, Span}
 import org.scalatestplus.mockito.MockitoSugar
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 
