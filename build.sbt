@@ -1,6 +1,6 @@
 ThisBuild / organization := "DAPEX"
 
-ThisBuild / version := "0.1.0"
+ThisBuild / version := "0.1.1"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -11,13 +11,15 @@ lazy val commonSettings = Seq(
   addCompilerPlugin(
     ("org.typelevel" %% "kind-projector" % "0.13.2").cross(CrossVersion.full)
   ),
-  addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
+  addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
+  publishConfiguration := publishConfiguration.value.withOverwrite(true),
+  publishLocalConfiguration := publishLocalConfiguration.value.withOverwrite(true)
 )
 
 lazy val base = (project in file("base"))
   .settings(
     commonSettings,
-    name := "base",
+    name := "drop-off-service-base",
     scalacOptions ++= Scalac.options,
     coverageExcludedPackages := Seq(
       "<empty>",
@@ -29,7 +31,7 @@ lazy val base = (project in file("base"))
 lazy val guardrail = (project in file("guardrail"))
   .settings(
     commonSettings,
-    name := "guardrail",
+    name := "rop-off-service-guardrail",
     Compile / guardrailTasks := List(
       ScalaServer(
         file("swagger.yaml"),
@@ -50,14 +52,16 @@ lazy val guardrail = (project in file("guardrail"))
 
 lazy val root = (project in file("."))
   .enablePlugins(
-    ScalafmtPlugin
+    ScalafmtPlugin,
+    JavaAppPackaging,
+    UniversalPlugin,
+    DockerPlugin
   )
   .settings(
     commonSettings,
     name := "drop-off-service",
     Compile / doc / sources := Seq.empty,
     scalacOptions ++= Scalac.options,
-    Compile / mainClass := Some("dapex.MainApp"),
     coverageExcludedPackages := Seq(
       "<empty>"
     ).mkString(";"),
@@ -70,7 +74,15 @@ lazy val root = (project in file("."))
     ).mkString(";"),
     coverageFailOnMinimum := true,
     coverageMinimumStmtTotal := 97,
-    coverageMinimumBranchTotal := 100
+    coverageMinimumBranchTotal := 100,
+    Compile / mainClass := Some("dapex.MainApp"),
+    Docker / packageName := "drop-off-service",
+    Docker / dockerUsername := Some("ramindur"),
+    Docker / defaultLinuxInstallLocation := "/opt/drop-off-service",
+    dockerRepository := Some("ramindur"),
+    dockerBaseImage := "eclipse-temurin:17-jdk-jammy",
+    dockerExposedPorts ++= Seq(8002),
+    dockerExposedVolumes := Seq("/opt/docker/.logs", "/opt/docker/.keys")
   )
   .aggregate(base, guardrail)
   .dependsOn(base % "test->test; compile->compile")
