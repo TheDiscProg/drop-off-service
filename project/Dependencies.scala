@@ -3,8 +3,9 @@ import sbt._
 object Dependencies {
 
   lazy val all = Seq(
-    "DAPEX" %% "dapex-messaging" % "0.1.5",
+    "DAPEX" %% "dapex-messaging" % "0.1.6",
     "Shareprice" %% "shareprice-config" % "0.1.2",
+    "DAPEX" %% "dapex-rabbitmq" % "0.1.4",
     "org.typelevel" %% "cats-effect" % "3.4.8",
     "org.http4s" %% "http4s-dsl" % "0.23.18",
     "org.http4s" %% "http4s-ember-server" % "0.23.18",

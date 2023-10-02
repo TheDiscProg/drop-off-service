@@ -1,11 +1,21 @@
 package dapex.dropoff.domain.orchestrator
 
-import dapex.dropoff.domain.rabbitmq.DapexMQPublisherAlgebra
+import cats.effect.kernel.Sync
 import dapex.messaging.DapexMessage
+import dapex.rabbitmq.RabbitQueue
+import dapex.rabbitmq.publisher.DapexMQPublisherAlgebra
+import org.typelevel.log4cats.Logger
+import cats.implicits._
 
-class DropOffOrchestrator[F[_]](rmqPublisher: DapexMQPublisherAlgebra[F])
+class DropOffOrchestrator[F[_]: Sync: Logger](rmqPublisher: DapexMQPublisherAlgebra[F])
     extends DropOffOrchestatorAlgebra[F] {
 
   override def handleDapexMessage(message: DapexMessage): F[Unit] =
-    rmqPublisher.publishDapexMessage(message)
+    for {
+      _ <- Logger[F].info(s"Publishing message to RMQ: $message")
+      _ <- rmqPublisher.publishMessageToQueue(
+        message,
+        RabbitQueue.withName(message.endpoint.resource)
+      )
+    } yield ()
 }

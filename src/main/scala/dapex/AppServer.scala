@@ -9,9 +9,10 @@ import com.comcast.ip4s._
 import dapex.config.ServerConfiguration
 import dapex.dropoff.domain.endpoint.DropOffEndpointHandler
 import dapex.dropoff.domain.orchestrator.DropOffOrchestrator
-import dapex.dropoff.domain.rabbitmq.{DapexMQPublisher, Rabbit}
 import dapex.guardrail.dropoff.DropoffResource
 import dapex.guardrail.healthcheck.HealthcheckResource
+import dapex.rabbitmq.Rabbit
+import dapex.rabbitmq.publisher.DapexMQPublisher
 import dapex.server.domain.healthcheck.{
   HealthCheckService,
   HealthChecker,

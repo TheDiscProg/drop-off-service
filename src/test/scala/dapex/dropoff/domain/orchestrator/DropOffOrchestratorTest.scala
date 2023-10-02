@@ -1,12 +1,15 @@
 package dapex.dropoff.domain.orchestrator
 
 import cats.effect.IO
-import dapex.dropoff.domain.rabbitmq.DapexMQPublisherAlgebra
 import dapex.dropoff.fixture.DropOffFixture
 import dapex.messaging.DapexMessage
+import dapex.rabbitmq.RabbitQueue
+import dapex.rabbitmq.publisher.DapexMQPublisherAlgebra
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import org.typelevel.log4cats.SelfAwareStructuredLogger
+import org.typelevel.log4cats.slf4j.Slf4jLogger
 
 class DropOffOrchestratorTest
     extends AnyFlatSpec
@@ -14,11 +17,11 @@ class DropOffOrchestratorTest
     with ScalaFutures
     with DropOffFixture {
   import cats.effect.unsafe.implicits.global
+  private implicit def unsafeLogger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
 
   val publisher = new DapexMQPublisherAlgebra[IO] {
 
-    override def publishDapexMessage(message: DapexMessage): IO[Unit] =
-      IO(())
+    override def publishMessageToQueue(message: DapexMessage, queue: RabbitQueue): IO[Unit] = IO(())
   }
 
   val sut = new DropOffOrchestrator[IO](publisher)
