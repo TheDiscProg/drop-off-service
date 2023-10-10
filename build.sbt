@@ -1,6 +1,6 @@
 ThisBuild / organization := "DAPEX"
 
-ThisBuild / version := "1.0.2"
+ThisBuild / version := "1.0.3"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -91,3 +91,4 @@ githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
 
 addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
 addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
+

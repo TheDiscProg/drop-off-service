@@ -5,7 +5,7 @@ object Dependencies {
   lazy val all = Seq(
     "DAPEX" %% "dapex-messaging" % "0.1.6",
     "Shareprice" %% "shareprice-config" % "0.1.2",
-    "DAPEX" %% "dapex-rabbitmq" % "0.1.4",
+    "DAPEX" %% "dapex-rabbitmq" % "0.1.5",
     "org.typelevel" %% "cats-effect" % "3.4.8",
     "org.http4s" %% "http4s-dsl" % "0.23.18",
     "org.http4s" %% "http4s-ember-server" % "0.23.18",
@@ -22,8 +22,6 @@ object Dependencies {
     "org.scalactic" %% "scalactic" % "3.2.15",
     "org.scalatest" %% "scalatest" % "3.2.15" % Test,
     "org.scalatestplus" %% "mockito-4-6" % "3.2.15.0" % Test,
-    "dev.profunktor" %% "fs2-rabbit" % "5.0.0",
-    "dev.profunktor" %% "fs2-rabbit-circe" % "5.0.0",
     "com.beachape" %% "enumeratum" % "1.7.2",
     "com.beachape" %% "enumeratum-circe" % "1.7.2",
     "io.scalaland" %% "chimney" % "0.7.4",

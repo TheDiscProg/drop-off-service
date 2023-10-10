@@ -23,3 +23,18 @@ Create a specific checker by implementing the trait **HealthChecker**.
 
 ### Add Checker to Checkers list for HealthCheckService
 Add the health checker to the list for **HealthCheckService** in **AuthenticatorServer**.
+
+## Creating Docker Image and pushing it to Docker Hub
+This project has sbt-native-packager enabled for Docker images. Use:
+
+```
+    sbt docker:publishLocal
+```
+which will install a docker image locally. You can then start it locally exposing port 8002.
+It will be automatically tagged with the build version.
+
+To push the image into Docker hub:
+```
+    docker login
+    docker push <repo>/drop-off-service:<version>
+```
