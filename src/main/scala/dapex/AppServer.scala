@@ -6,7 +6,6 @@ import cats.effect.std.Dispatcher
 import cats.effect.{Async, Resource}
 import cats.implicits._
 import com.comcast.ip4s._
-import dapex.config.ServerConfiguration
 import dapex.dropoff.domain.endpoint.DropOffEndpointHandler
 import dapex.dropoff.domain.orchestrator.DropOffOrchestrator
 import dapex.guardrail.dropoff.DropoffResource
@@ -25,6 +24,7 @@ import org.http4s.implicits._
 import org.http4s.server.Server
 import org.http4s.server.middleware.Logger
 import org.typelevel.log4cats.{Logger => Log4CatsLogger}
+import shareprice.config.ServerConfiguration
 
 object AppServer {
 

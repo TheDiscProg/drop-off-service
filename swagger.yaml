@@ -68,7 +68,9 @@ components:
         client:
           $ref: '#/components/schemas/Client'
         originator:
-          $ref: '#/components/schemas/Orignator'
+          $ref: '#/components/schemas/Originator'
+        entity:
+          $ref: '#/components/schemas/Entity'
         criteria:
           type: array
           items:
@@ -130,7 +132,7 @@ components:
         - sourceEndpoint
         - authorisation
 
-    Orignator:
+    Originator:
       type: object
       properties:
         clientId:
@@ -142,10 +144,23 @@ components:
         sourceEndpoint:
           type: string
           description: the endpoint of the originator that started this COE
+        originalToken:
+          type: string
+          description: security token used to make the request
       required:
         - clientId
         - requestId
         - sourceEndpoint
+        - originalToken
+
+    Entity:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the entity for which select, update, delete are applied to
+      required:
+        - name
 
     Criterion:
       type: object

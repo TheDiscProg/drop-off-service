@@ -1,6 +1,6 @@
 ThisBuild / organization := "DAPEX"
 
-ThisBuild / version := "1.0.3"
+ThisBuild / version := "1.1.0"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -25,13 +25,15 @@ lazy val base = (project in file("base"))
       "<empty>",
       ".*entities._",
       ".*Algebra.*",
-    ).mkString(";")
+    ).mkString(";"),
+    publish / skip := true
   )
 
 lazy val guardrail = (project in file("guardrail"))
   .settings(
     commonSettings,
-    name := "rop-off-service-guardrail",
+    name := "drop-off-service-guardrail",
+    publish / skip := true,
     Compile / guardrailTasks := List(
       ScalaServer(
         file("swagger.yaml"),
