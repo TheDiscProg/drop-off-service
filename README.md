@@ -8,6 +8,14 @@ It:
 * Validates DAPEX messages
 * Sends DAPEX message to the RMQ
 
+The drop-off service simply receives DAPEX messages and sends them on internally to the respective 
+backend services using the `endpoint.resource` in the DAPEX message.
+
+## Lack of Security
+There is, at present, no security checks on the message received. Possible future features could be:
+1. Check for valid `client.authorisation` token is valid using system-wide caching service
+2. Check that the destination endpoint is one that the system can handle
+
 ## Health Check
 A basic health check is enabled in this service, but additional health checks can be enabled as described below. An 
 high-level description is given below.
