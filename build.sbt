@@ -1,6 +1,6 @@
-ThisBuild / organization := "DAPEX"
+ThisBuild / organization := "simex"
 
-ThisBuild / version := "1.1.1"
+ThisBuild / version := "2.0.0"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -37,7 +37,7 @@ lazy val guardrail = (project in file("guardrail"))
     Compile / guardrailTasks := List(
       ScalaServer(
         file("swagger.yaml"),
-        pkg = "dapex.guardrail",
+        pkg = "simex.guardrail",
         framework = "http4s",
         tracing = false,
         imports = List(
@@ -77,7 +77,7 @@ lazy val root = (project in file("."))
     coverageFailOnMinimum := true,
     coverageMinimumStmtTotal := 97,
     coverageMinimumBranchTotal := 100,
-    Compile / mainClass := Some("dapex.MainApp"),
+    Compile / mainClass := Some("simex.MainApp"),
     Docker / packageName := "drop-off-service",
     Docker / dockerUsername := Some("ramindur"),
     Docker / defaultLinuxInstallLocation := "/opt/drop-off-service",
@@ -91,6 +91,6 @@ lazy val root = (project in file("."))
 
 githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
 
-addCommandAlias("clntst", ";clean;scalafmt;test:scalafmt;test;")
-addCommandAlias("cvrtst", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
+addCommandAlias("cleanTest", ";clean;scalafmt;test:scalafmt;test;")
+addCommandAlias("cleanCoverage", ";clean;scalafmt;test:scalafmt;coverage;test;coverageReport;")
 

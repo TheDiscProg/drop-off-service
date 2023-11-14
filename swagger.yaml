@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  description: "EDA/DAPEX Drop-Off API"
+  description: "Simex Drop-Off API"
   version: 1.0.0
-  title: DAPEX Drop-Off API
+  title: SIMEX Drop-Off API
 tags:
   - name: healthcheck
     description: Healthcheck API
   - name: dropoff
-    description: Drop-Off Service endpoing
+    description: Drop-Off Service endpoint
 
 paths:
   /:
@@ -34,12 +34,12 @@ paths:
       description: Drop off endpoint for all requests
       operationId: dropOffRequest
       requestBody:
-        description: a DAPEX message
+        description: a SIMEX message
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/DapexMessageRequest'
+              $ref: '#/components/schemas/SimexMessageRequest'
       responses:
         '204':
           description: Ok
@@ -60,7 +60,7 @@ components:
       required:
         - serviceStatus
 
-    DapexMessageRequest:
+    SimexMessageRequest:
       type: object
       properties:
         endpoint:
@@ -69,34 +69,15 @@ components:
           $ref: '#/components/schemas/Client'
         originator:
           $ref: '#/components/schemas/Originator'
-        entity:
-          $ref: '#/components/schemas/Entity'
-        criteria:
+        data:
           type: array
           items:
-            $ref: '#/components/schemas/Criterion'
-        update:
-          type: array
-          items:
-            $ref: '#/components/schemas/Update'
-        insert:
-          type: array
-          items:
-            $ref: '#/components/schemas/Insert'
-        process:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-        response:
-          $ref: '#/components/schemas/DapexResponse'
+            $ref: '#/components/schemas/Datum'
       required:
         - endpoint
         - client
         - originator
-        - criteria
-        - update
-        - insert
-        - process
+        - data
 
     EndPoint:
       type: object
@@ -107,6 +88,9 @@ components:
         method:
           type: string
           description: the call type
+        entity:
+          type: string
+          description: optional business entity
       required:
         - resource
         - method
@@ -123,14 +107,14 @@ components:
         sourceEndpoint:
           type: string
           description: the client's endpoint from with the call was made
-        authorisation:
+        authorization:
           type: string
-          description: the authentication/authorisation token
+          description: the authentication/authorization token
       required:
         - clientId
         - requestId
         - sourceEndpoint
-        - authorisation
+        - authorization
 
     Originator:
       type: object
@@ -153,16 +137,7 @@ components:
         - sourceEndpoint
         - originalToken
 
-    Entity:
-      type: object
-      properties:
-        name:
-          type: string
-          description: the entity for which select, update, delete are applied to
-      required:
-        - name
-
-    Criterion:
+    Datum:
       type: object
       properties:
         field:
@@ -171,83 +146,10 @@ components:
         value:
           type: string
           description: the value to evaluate
-        operator:
+        check:
           type: string
-          description: the operation for the evaluation
-      required:
-        - field
-        - value
-        - operator
-
-    Update:
-      type: object
-      properties:
-        field:
-          type: string
-          description: the name of the field to update
-        oldValue:
-          type: string
-          description: the old value
-        newValue:
-          type: string
-          description: the new value
-      required:
-        - field
-        - newValue
-
-    Insert:
-      type: object
-      properties:
-        field:
-          type: string
-          description: the name of the field
-        value:
-          type: string
-          description: the value to set
+          description: the check or type of operation for the evaluation
       required:
         - field
         - value
 
-    Process:
-      type: object
-      properties:
-        field:
-          type: string
-          description: the name of the field
-        value:
-          type: string
-          description: the value to use
-      required:
-        - field
-        - value
-
-    DapexResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: the status of the event
-        message:
-          type: string
-          description: the message to send back
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldValuePair'
-      required:
-        - status
-        - message
-        - data
-
-    FieldValuePair:
-      type: object
-      properties:
-        field:
-          type: string
-          description: the name of the field
-        value:
-          type: string
-          description: the string representation of the value
-      required:
-        - field
-        - value

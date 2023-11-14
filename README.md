@@ -1,19 +1,19 @@
-# DAPEX Drop-Off Service
-EDA/DAPEX Drop-Off service.
+# SIMEX Drop-Off Service
+Drop-off service for Event Driven Architecture using SIMEX Messaging API
 
 It:
 * Is written in Scala
 * Uses Guardrail to build the HTTP API
 * Uses Ember embedded HTTP server
-* Validates DAPEX messages
-* Sends DAPEX message to the RMQ
+* Validates SIMEX messages
+* Sends SIMEX message to the RMQ
 
-The drop-off service simply receives DAPEX messages and sends them on internally to the respective 
-backend services using the `endpoint.resource` in the DAPEX message.
+The drop-off service simply receives SIMEX messages and sends them on internally to the respective 
+backend services using the `endpoint.resource` in the SIMEX message.
 
 ## Lack of Security
 There is, at present, no security checks on the message received. Possible future features could be:
-1. Check for valid `client.authorisation` token is valid using system-wide caching service
+1. Check for valid `client.authorization` token is valid using system-wide caching service
 2. Check that the destination endpoint is one that the system can handle
 
 ## Health Check
