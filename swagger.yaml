@@ -131,11 +131,15 @@ components:
         originalToken:
           type: string
           description: security token used to make the request
+        security:
+          type: string
+          description: the client-defined security level to apply
       required:
         - clientId
         - requestId
         - sourceEndpoint
         - originalToken
+        - security
 
     Datum:
       type: object
