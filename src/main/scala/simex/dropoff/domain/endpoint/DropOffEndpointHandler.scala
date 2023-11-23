@@ -5,7 +5,7 @@ import cats.implicits._
 import org.typelevel.log4cats.Logger
 import simex.dropoff.domain.ServiceResponse
 import simex.dropoff.domain.orchestrator.DropOffOrchestatorAlgebra
-import simex.guardrail.definitions.SimexMessageRequest
+import simex.guardrail.definitions.SimexMessage
 import simex.guardrail.dropoff.DropoffResource.DropOffRequestResponse
 import simex.guardrail.dropoff.DropoffResource.DropOffRequestResponse.{
   BadRequest,
@@ -21,7 +21,7 @@ class DropOffEndpointHandler[F[_]: Logger: MonadCancel[*[_], Throwable]](
 
   override def dropOffRequest(
       respond: DropoffResource.DropOffRequestResponse.type
-  )(body: SimexMessageRequest): F[DropoffResource.DropOffRequestResponse] =
+  )(body: SimexMessage): F[DropoffResource.DropOffRequestResponse] =
     for {
       _ <- Logger[F].info(s"Drop-Off Message: $body")
       messageOption = SimexMessageTransformer.transformRequest(body)

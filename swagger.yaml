@@ -39,7 +39,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SimexMessageRequest'
+              $ref: '#/components/schemas/SimexMessage'
       responses:
         '204':
           description: Ok
@@ -60,7 +60,7 @@ components:
       required:
         - serviceStatus
 
-    SimexMessageRequest:
+    SimexMessage:
       type: object
       properties:
         endpoint:
