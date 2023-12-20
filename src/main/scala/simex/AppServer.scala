@@ -58,10 +58,10 @@ object AppServer {
       httpApp = Logger.httpApp(logHeaders = true, logBody = true)(allRoutes)
 
       // Build server
-      httpPort = Port.fromInt(conf.http.port.value)
-      httpHost = Ipv4Address.fromString(conf.http.host.value)
+      httpPort = Port.fromInt(conf.http.port)
+      httpHost = Ipv4Address.fromString(conf.http.hostAddress)
       server <- EmberServerBuilder.default
-        .withPort(httpPort.getOrElse(port"8082"))
+        .withPort(httpPort.getOrElse(port"8080"))
         .withHost(httpHost.getOrElse(ipv4"0.0.0.0"))
         .withHttpApp(httpApp)
         .build

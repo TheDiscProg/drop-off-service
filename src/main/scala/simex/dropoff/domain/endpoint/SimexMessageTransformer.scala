@@ -11,12 +11,14 @@ object SimexMessageTransformer {
     Try {
       request
         .into[Simex]
+        .withFieldComputed(_.originator.messageTTL, r => r.originator.messageTtl)
         .transform
     }.toOption
 
   def transformDapexMessage(simexMessage: Simex): SimexMessage =
     simexMessage
       .into[SimexMessage]
+      .withFieldComputed(_.originator.messageTtl, s => s.originator.messageTTL)
       .transform
 
 }
