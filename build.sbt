@@ -1,6 +1,6 @@
 ThisBuild / organization := "simex"
 
-ThisBuild / version := "2.1.2"
+ThisBuild / version := "2.2.0"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -70,13 +70,11 @@ lazy val root = (project in file("."))
     coverageExcludedFiles := Seq(
       "<empty>",
       ".*MainApp.*",
-      ".*AppServer.*",
-      ".*.config.*",
-      ".*rabbitmq.*"
+      ".*AppServer.*"
     ).mkString(";"),
     coverageFailOnMinimum := true,
-    coverageMinimumStmtTotal := 97,
-    coverageMinimumBranchTotal := 100,
+    coverageMinimumStmtTotal := 92,
+    coverageMinimumBranchTotal := 85,
     Compile / mainClass := Some("simex.MainApp"),
     Docker / packageName := "drop-off-service",
     Docker / dockerUsername := Some("ramindur"),

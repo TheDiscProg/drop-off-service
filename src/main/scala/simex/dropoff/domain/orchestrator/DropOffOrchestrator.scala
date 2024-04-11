@@ -15,7 +15,7 @@ class DropOffOrchestrator[F[_]: Sync: Logger](rmqPublisher: SimexMQPublisherAlge
       _ <- Logger[F].info(s"Publishing message to RMQ: $message")
       _ <- rmqPublisher.publishMessageToQueue(
         message,
-        SharepriceQueue.queueWithName(message.endpoint.resource)
+        SharepriceQueue.queueWithName(message.destination.resource)
       )
     } yield ()
 }
