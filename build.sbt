@@ -1,6 +1,6 @@
 ThisBuild / organization := "simex"
 
-ThisBuild / version := "2.2.0"
+ThisBuild / version := "2.2.1"
 
 lazy val commonSettings = Seq(
   scalaVersion := "2.13.10",
@@ -80,7 +80,7 @@ lazy val root = (project in file("."))
     Docker / dockerUsername := Some("ramindur"),
     Docker / defaultLinuxInstallLocation := "/opt/drop-off-service",
     dockerBaseImage := "eclipse-temurin:17-jdk-jammy",
-    dockerExposedPorts ++= Seq(8080),
+    dockerExposedPorts ++= Seq(8090),
     dockerExposedVolumes := Seq("/opt/docker/.logs", "/opt/docker/.keys")
   )
   .aggregate(base, guardrail)
