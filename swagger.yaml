@@ -6,8 +6,6 @@ info:
 tags:
   - name: healthcheck
     description: Healthcheck API
-  - name: dropoff
-    description: Drop-Off Service endpoint
 
 paths:
   /:
