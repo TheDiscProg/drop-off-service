@@ -12,7 +12,7 @@ class DropOffOrchestrator[F[_]: Sync: Logger](rmqPublisher: SimexMQPublisherAlge
 
   override def handleDapexMessage(message: Simex): F[Unit] =
     for {
-      _ <- Logger[F].info(s"Publishing message to RMQ: $message")
+      _ <- Logger[F].info(s"Publishing request to RMQ: $message")
       _ <- rmqPublisher.publishMessageToQueue(
         message,
         SharepriceQueue.queueWithName(message.destination.resource)

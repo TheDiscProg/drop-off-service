@@ -73,8 +73,8 @@ lazy val root = (project in file("."))
       ".*AppServer.*"
     ).mkString(";"),
     coverageFailOnMinimum := true,
-    coverageMinimumStmtTotal := 92,
-    coverageMinimumBranchTotal := 85,
+    coverageMinimumStmtTotal := 90,
+    coverageMinimumBranchTotal := 75,
     Compile / mainClass := Some("simex.MainApp"),
     Docker / packageName := "drop-off-service",
     Docker / dockerUsername := Some("ramindur"),

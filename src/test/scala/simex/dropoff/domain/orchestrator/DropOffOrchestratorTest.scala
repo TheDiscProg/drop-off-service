@@ -26,7 +26,7 @@ class DropOffOrchestratorTest
 
   val sut = new DropOffOrchestrator[IO](publisher)
 
-  it should "publish message to queue" in {
+  it should "publish request to queue" in {
     val result = sut.handleDapexMessage(authenticationRequest).unsafeToFuture()
 
     whenReady(result) { r =>

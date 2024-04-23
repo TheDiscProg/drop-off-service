@@ -6,13 +6,13 @@ It:
 * Uses Guardrail to build the HTTP API
 * Uses Ember embedded HTTP server
 * Validates SIMEX messages
-* Sends SIMEX message to the RMQ
+* Sends SIMEX request to the RMQ
 
 The drop-off service simply receives SIMEX messages and sends them on internally to the respective 
-backend services using the `endpoint.resource` in the SIMEX message.
+backend services using the `endpoint.resource` in the SIMEX request.
 
 ## Message Validation and Security Check
-There is some message validation and security check but could be improved by checking for a valid authorisation token.
+There is some request validation and security check but could be improved by checking for a valid authorisation token.
 
 ## Health Check
 A basic health check is enabled in this service, but additional health checks can be enabled as described below. An 

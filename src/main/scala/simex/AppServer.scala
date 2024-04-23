@@ -47,7 +47,7 @@ object AppServer {
       securityService = new DropOffSecurityService[F]()
 
       // Drop-Off request validator
-      validator = new DropOffRequestValidator()
+      validator = new DropOffRequestValidator[F]()
 
       // Endpoint handler
       endpointHandler = new DropOffEndPointRequestHandler[F](

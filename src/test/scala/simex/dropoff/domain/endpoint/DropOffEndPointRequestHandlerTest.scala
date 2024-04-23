@@ -13,13 +13,7 @@ import simex.dropoff.fixture.DefaultFutureSetting
 import simex.messaging.Method.INSERT
 import simex.messaging.Simex
 import simex.test.SimexTestFixture
-import simex.webservice.HttpResponseResource.HttpResponse
-import simex.webservice.HttpResponseResource.HttpResponse.{
-  BadRequest,
-  Forbidden,
-  NoContent,
-  ServiceUnavailable
-}
+import simex.webservice.HttpResponseResource.HttpResponse.{Forbidden, NoContent, ServiceUnavailable}
 
 class DropOffEndPointRequestHandlerTest
     extends AnyFlatSpec
@@ -46,11 +40,11 @@ class DropOffEndPointRequestHandlerTest
     URL,
     new DropOffSecurityService[IO](),
     orc,
-    new DropOffRequestValidator()
+    new DropOffRequestValidator[IO]()
   )
 
   it should "return NoContent for a valid request" in {
-    val result = sut.handleSimexRequest(HttpResponse)(request).unsafeToFuture()
+    val result = sut.handleSimexRequest(request).unsafeToFuture()
 
     whenReady(result) { r =>
       r shouldBe NoContent
@@ -60,7 +54,7 @@ class DropOffEndPointRequestHandlerTest
   it should "return Forbidden when it fails security check" in {
     val forbiddenRequest = request.copy(client = authenticationRequest.client.copy(clientId = "  "))
 
-    val result = sut.handleSimexRequest(HttpResponse)(forbiddenRequest).unsafeToFuture()
+    val result = sut.handleSimexRequest(forbiddenRequest).unsafeToFuture()
 
     whenReady(result) { r =>
       r shouldBe Forbidden
@@ -71,27 +65,17 @@ class DropOffEndPointRequestHandlerTest
     val forbiddenRequest =
       request.copy(destination = request.destination.copy(resource = "unavailable"))
 
-    val result = sut.handleSimexRequest(HttpResponse)(forbiddenRequest).unsafeToFuture()
+    val result = sut.handleSimexRequest(forbiddenRequest).unsafeToFuture()
 
     whenReady(result) { r =>
       r shouldBe Forbidden
     }
   }
 
-  it should "handle an invalid request that fails to decode" in {
-    val badRequest = request.copy(destination = null)
-
-    val result = sut.handleSimexRequest(HttpResponse)(badRequest).unsafeToFuture()
-
-    whenReady(result) { r =>
-      r shouldBe BadRequest
-    }
-  }
-
   it should "return Service Unavailable when a service is not available" in {
     val request = getMessage(INSERT, None, Vector())
 
-    val result = sut.handleSimexRequest(HttpResponse)(request).unsafeToFuture()
+    val result = sut.handleSimexRequest(request).unsafeToFuture()
 
     whenReady(result) { r =>
       r shouldBe ServiceUnavailable

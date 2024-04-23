@@ -2,10 +2,9 @@ import sbt._
 
 object Dependencies {
 
-  lazy val simexVersion = "0.8.0"
-
   lazy val all = Seq(
-    "simex" %% "simex-web-service" % simexVersion,
+    "simex" %% "simex-web-service" % "1.0.0",
+    "thediscprog" %% "simex-utils" % "0.3.0",
     "Shareprice" %% "shareprice-config" % "0.11.3",
     "org.typelevel" %% "cats-effect" % "3.4.8",
     "org.http4s" %% "http4s-dsl" % "0.23.18",
